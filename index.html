@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+			 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>首页</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- 当启动webapp功能时，显示手机信号、时间、电池的顶部导航栏的颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）。这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- 忽略页面中的数字识别为电话号码、email识别 -->
+		<meta name="format-detection" content="telephone=no, email=no">
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta name="renderer" content="webkit">
+		<!-- 避免IE使用兼容模式 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+		<meta name="HandheldFriendly" content="true">
+		<!-- 微软的老式浏览器 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 网页不会被缓存 -->
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/static.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<style>
+			input {
+				box-sizing: border-box;
+				vertical-align: middle;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 主界面移动、菜单不动 -->
+		<div class="mui-off-canvas-wrap mui-draggable">
+			<!-- 主页面容器 -->
+			<div class="mui-inner-wrap">
+				<!-- 主页面标题 -->
+				<!-- 主页面标题 -->
+				<header class="mui-bar mui-bar-nav">
+					<!--	<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left"  href="#offCanvasSide" ></a>
+			-->
+					<h1 class="mui-title">首页</h1>
+				</header>
+				<nav class="mui-bar mui-bar-tab">
+					<a href="index.html" class="mui-tab-item mui-active">
+						<span class="mui-icon mui-icon-home"></span>
+						<span class="mui-tab-label">首页</span>
+					</a>
+
+					<a href="order.html" class="mui-tab-item">
+						<span class="mui-icon mui-icon-order"></span>
+						<span class="mui-tab-label">订单</span>
+					</a>
+					<a href="myCenter.html" class="mui-tab-item">
+						<span class="mui-icon mui-icon-mine"></span>
+						<span class="mui-tab-label">我的</span>
+					</a>
+				</nav>
+				<div class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!--这里放置真实显示的DOM内容-->
+						<div id="slider" class="mui-slider slider-first-index">
+							<div class="mui-slider-group mui-slider-loop">
+							</div>
+							<div class="mui-slider-indicator">
+							</div>
+						</div>
+						<div class="notice">
+							<img src="img/icon_horn.png" alt="通知" />
+							<div class="notice-list">
+							</div>
+						</div>
+						<!--<div class="mui-full-back"></div>-->
+						<ul class="mui-table-view index-list-view" id="list">
+						</ul>
+						<div class="mui-full-back"></div>
+					</div>
+				</div>
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/path.js" type="text/javascript" charset="UTF-8"></script>
+		<script type="text/javascript">
+			//初始化mui
+			mui.init();
+			//轮播图ajax
+			mui.ajax(basePath + '/app/advert/getPortalAdvertList.do', {
+				dataType: 'json', //服务器返回json格式数据
+				async: true, //是否异步
+				type: 'GET', //HTTP请求类型
+				cache: false, //是否缓存
+				timeout: 10000, //超时时间设置；
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				success: function(banner) {
+					//					console.log(banner);
+					//					console.log(banner.msg);
+					$('.mui-slider-loop').append('<div class="mui-slider-item mui-slider-item-duplicate" id="imgFrist"><a href="#"><img src="' + banner.data[banner.data.length - 1].advertUrl + '"></a></div>')
+					$('.mui-slider-loop').append('<div class="mui-slider-item mui-slider-item-duplicate" id="imgLast"><a href="#"><img src="' + banner.data[0].advertUrl + '"></a></div>')
+					for(let i = 1; i <= banner.data.length; i++) {
+						$('.mui-slider-indicator').append('<div class="mui-indicator"></div>');
+						$('#imgLast').before('<div class="mui-slider-item"><a href="#"><img src="' + banner.data[i - 1].advertUrl + '"></a></div>');
+					}
+					$('.mui-slider-indicator').children('div:first-child').addClass('mui-active');
+					var gallery = mui('.mui-slider');
+					gallery.slider({
+						interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+					});
+				},
+				error: function(xhr, type, errorThrown) {
+					console.log('xhr:', xhr);
+					console.log('type:', type);
+					console.log('errorThrown:', errorThrown);
+				}
+			});
+			//通知ajax
+			mui.ajax(basePath + '/app/inform/getList.do', {
+				dataType: 'json', //服务器返回json格式数据
+				async: true, //是否异步
+				type: 'GET', //HTTP请求类型
+				cache: false, //是否缓存
+				timeout: 10000, //超时时间设置；
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				success: function(inform) {
+					//					console.log(inform);
+
+					for(let i = 1; i <= inform.data.length; i++) {
+						$('.notice-list').append('<p>' + inform.data[0].content + '</p>');
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					console.log('xhr:', xhr);
+					console.log('type:', type);
+					console.log('errorThrown:', errorThrown);
+				}
+			});
+			//商品列表ajax
+			mui.ajax(basePath + '/app/goods/getList.do', {
+				dataType: 'json', //服务器返回json格式数据
+				async: true, //是否异步
+				type: 'GET', //HTTP请求类型
+				cache: false, //是否缓存
+				timeout: 10000, //超时时间设置；
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				success: function(goodsList) {
+					console.log(goodsList);
+					console.log(goodsList.data);
+					for(let i = 1; i <= goodsList.data.length; i++) {
+						$('#list').append('<li class="mui-table-view-cell mui-collapse-content">' +
+							'<input class="hideInput" type="hidden" value="' + goodsList.data[i].id + '" />' +
+							'<div class="list-content">' +
+							'<img src="' + goodsList.data[i].logo + '" class="list-img" />' +
+							'<div class="list-pay">' +
+							'<h5>' + goodsList.data[i].name + '</h5>' +
+							'<div class="number">' +
+							'<div class="mui-input-group good-number add-odd mui-left">' +
+							'<span style="float:left;">数量&nbsp;&nbsp;&nbsp;</span>' +
+							'<p class="del-index">-<input type="button" class="addon icon-minus input-index" id="del'+i+'" onclick="del('+i+')" /></p>' +
+							'<p class="center-index"><input type="number" class="input-index input-num" id="amount'+i+'" name="amount" value="1" readonly="readonly" /></p>' +
+							'<p class="add-index">+<input type="button" class="addon icon-plus input-index" id="add'+i+'" onclick="add('+i+')" /> </p>' +
+							'</div></div>' +
+							'<p class="price">价格&nbsp;&nbsp;<span>￥' + goodsList.data[i].price + '</span></p>' +
+							'<button type="button" class="index-btn" onclick="go_detail(this);">购买</button></div></div></li>');
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					console.log('xhr:', xhr);
+					console.log('type:', type);
+					console.log('errorThrown:', errorThrown);
+				}
+			});
+
+			//通知栏动态事件
+			// 			var textWidth = $('.notice-list p').width();
+			// 			var num = $('.notice-list').children('p').length;
+			// 			var i=-textWidth*(num-1);
+			var i = 0;
+			var timer = setTimeout(marquee, 1000);
+
+			function marquee() {
+				var totalWidth = $('.notice').width();
+				var scrollWidth = $('.notice-list').width();
+				var textWidth = $('.notice-list p').width();
+				var num = $('.notice-list').children('p').length;
+				// i = -scrollWidth;
+				setInterval(function() {
+					i++;
+					if(i > scrollWidth) {
+						i = -textWidth;
+						$('.notice-list p').animate({
+							'right': -i / 50 + 'rem'
+						}, 20);
+					}
+					$('.notice-list p').animate({
+						'right': -i / 50 + 'rem'
+					}, 20);
+					//console.log(i);
+				}, 20);
+				//console.log(scrollWidth );
+			}
+			//购买事件
+			function go_detail(btn) {
+                localStorage.removeItem('goodsNum');
+                localStorage.removeItem('goodsId');
+                localStorage.setItem('goodsId',$(btn).parent().parent().parent().children(".hideInput").val());
+                localStorage.setItem('goodsNum',$(btn).parent().children('.number').children().children('.center-index').children().val());
+				window.location.href = "goodsDetail.html";
+			}
+			//购买数量
+			function changeNum(num){
+                console.log(1111)
+			}
+
+			// 				var dlist = document.getElementById("list");
+			// 				var num = dlist.length;
+			// 				var num = $("#list li").length;
+			// 				console.log(num);
+			//增加份数
+			function add(num) {
+				var num_add = parseInt($("#amount" + num).val()) + 1;
+				if($("#amount" + num).val() == "") {
+					num_add = 1;
+				}
+
+				$("#amount" + num).val(num_add);
+			}
+			//减少份数
+			function del(num) {
+				var num_dec = parseInt($("#amount" + num).val()) - 1;
+				if(num_dec < 1) {
+					mui.toast("最少1份");
+				} else {
+					$("#amount" + num).val(num_dec);
+				}
+			}
+		</script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lunbo.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

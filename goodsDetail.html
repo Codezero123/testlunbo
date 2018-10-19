@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta http-equiv="Cache-Control" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>商品详情</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- 当启动webapp功能时，显示手机信号、时间、电池的顶部导航栏的颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）。这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- 忽略页面中的数字识别为电话号码、email识别 -->
+		<meta name="format-detection" content="telephone=no, email=no">
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta name="renderer" content="webkit">
+		<!-- 避免IE使用兼容模式 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+		<meta name="HandheldFriendly" content="true">
+		<!-- 微软的老式浏览器 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 网页不会被缓存 -->
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/static.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+
+	</head>
+
+	<body>
+		<!-- 主界面移动、菜单不动 -->
+		<div class="mui-off-canvas-wrap mui-draggable">
+			<!-- 主页面容器 -->
+			<div class="mui-inner-wrap">
+				<!-- 主页面标题 -->
+				<!-- 主页面标题 -->
+				<header class="mui-bar mui-bar-nav">
+					<a class="mui-icon mui-icon-arrowleft mui-pull-left back mui-action-back" href="javascript:history:back(-1)">返回</a>
+					<h1 class="mui-title">商品详情</h1>
+				</header>
+				<nav class="mui-bar mui-bar-tab good-detail">
+					<p class="bar-bottom bar-first">￥<span id="totalMoney-project"></span></p>
+					<p class="bar-bottom bar-second" id="userMoney">余额：</p>
+					<a href="paySuccessed.html" class="bar-bottom bar-third">
+						购买
+					</a>
+				</nav>
+				<div class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!--这里放置真实显示的DOM内容-->
+						<div id="slider" class="mui-slider slider-first-index">
+							<div id="goodsSlider" class="mui-slider-group mui-slider-loop">
+							</div>
+							<div class="mui-slider-indicator">
+							</div>
+						</div>
+
+						<!--<div class="mui-full-back"></div>-->
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-collapse-content list-good-detail">
+								<h5 id="goodsTit"></h5>
+								<div class="pri-num">
+									<p class="color-red" id="goodsPrice">￥</p>
+									<div class="mui-input-group good-number add-odd mui-right">
+										<span style="float:left;">数量：</span>
+										<p class="del-p">-<input type="button" class="addon icon-minus addon-del" id="del-project" /></p>
+										<input type="number" class="input" id="amount-project" name="amount" value="1" />
+										<p class="add-p">+<input type="button" class="addon icon-plus addon-add" id="add-project" /></p>
+										<!--<span class="addon text-red">¥<span id="totalMoney">235.00</span>元</span>-->
+										<input type="hidden" value="398" name="money" id="money-project" />
+									</div>
+								</div>
+							</li>
+							<li class="mui-table-view-cell mui-collapse-content list-good-detail">
+								<p class="trans-pay" id="goodsFreight">运费&nbsp;&nbsp;￥</p>
+							</li>
+							<li class="mui-table-view-cell mui-collapse-content list-good-detail">
+								<a href="addressList.html">
+									<p class="good-addr" id="goodsAdd">送至&nbsp;&nbsp;<span>湖南省长沙市岳麓区美好湖南省长沙市岳麓区</span></p>
+								</a>
+							</li>
+						</ul>
+						<div id="goodsCont">
+							<p class="good-introduce">商品介绍</p>
+						</div>
+						<div class="mui-full-back"></div>
+					</div>
+				</div>
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/path.js" type="text/javascript" charset="UTF-8"></script>
+		<script type="text/javascript">
+			//初始化mui
+			mui.init();
+			//获取商品详情ajax
+			mui.ajax('http://api.cskuaishou.com/hongjiu/app/goods/getGoods.do', {
+				dataType: 'json', //服务器返回json格式数据
+				data: {
+					id: localStorage.getItem('goodsId')
+				},
+				async: true, //是否异步
+				type: 'POST', //HTTP请求类型
+				cache: false, //是否缓存
+				success: function(goodsDetail) {
+					console.log(goodsDetail);
+					console.log(goodsDetail.data.img[0].imageName)
+					if(goodsDetail.data.img.length == 1) {
+						if(goodsDetail.data.img[0].imageName == ''){
+							goodsDetail.data.img[0].imageName = '/RedWine/img/banner_Goodsdetails.png';
+						}
+						$('#goodsSlider').append('<div class="mui-slider-item mui-slider-item-duplicate" id="imgFrist"><a href="#"><img src="' + goodsDetail.data.img[0].imageName + '"></a></div>')
+						$('#goodsSlider').append('<div class="mui-slider-item mui-slider-item-duplicate" id="imgLast"><a href="#"><img src="' + goodsDetail.data.img[0].imageName + '"></a></div>')
+						$('.mui-slider-indicator').append('<div class="mui-indicator"></div>');
+						$('#imgFrist').after(`<div class="mui-slider-item">
+									<a href="#">
+										<img src="`+goodsDetail.data.img[0].imageName+`">
+									</a>
+								</div>`)
+					}else{
+						$('#goodsSlider').append('<div class="mui-slider-item mui-slider-item-duplicate" id="imgFrist"><a href="#"><img src="' + goodsDetail.data.img[goodsDetail.data.imgSrc.length - 1].imageName + '"></a></div>')
+						$('#goodsSlider').append('<div class="mui-slider-item mui-slider-item-duplicate" id="imgLast"><a href="#"><img src="' + goodsDetail.data.img[0].imageName + '"></a></div>')
+						for(let i = 0; i <= goodsDetail.data.imgSrc.length - 1; i++){
+							$('.mui-slider-indicator').append('<div class="mui-indicator"></div>');
+							$('#imgFrist').after(`<div class="mui-slider-item">
+									<a href="#">
+										<img src="`+goodsDetail.data.img[i].imageName+`">
+									</a>
+								</div>`);
+						}
+					}
+					$('.mui-slider-indicator').children('div:first-child').addClass('mui-active');
+					var gallery = mui('.mui-slider');
+					gallery.slider({
+						interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+					});
+					
+					$('#goodsTit').append(goodsDetail.data.title);
+					$('#goodsPrice').append(goodsDetail.data.price);
+					$('#goodsFreight').append(goodsDetail.data.freight);
+					$('#amount-project').val(localStorage.getItem('goodsNum'));
+					$('#goodsCont').append(goodsDetail.data.content);
+					$('#totalMoney-project').append(goodsDetail.data.price * localStorage.getItem('goodsNum'));
+				},
+				error: function(xhr, type, errorThrown) {
+					console.log('xhr:', xhr);
+					console.log('type:', type);
+					console.log('errorThrown:', errorThrown);
+				}
+			});
+			//获取用户余额ajax
+			mui.ajax('http://api.cskuaishou.com/hongjiu/app/user/getMyAccountMoney.do', {
+				dataType: 'json', //服务器返回json格式数据
+				data: {
+					userId: '6461c403a78841cc8e055566f73ab442'
+				},
+				async: true, //是否异步
+				type: 'POST', //HTTP请求类型
+				cache: false, //是否缓存
+				success: function(userMoney) {
+					console.log(userMoney);
+					$('#userMoney').append(userMoney.data.accountMoney+'元');
+				},
+				error: function(xhr, type, errorThrown) {
+					console.log('xhr:', xhr);
+					console.log('type:', type);
+					console.log('errorThrown:', errorThrown);
+				}
+			});
+
+			//数量加减调用事件
+			$(function() {
+				$("#amount-project").keyup(function() {
+					if(isNaN($(this).val()) || parseInt($(this).val()) < 1) {
+						$(this).val("1");
+						$("#totalMoney-project").html($("#money-project").val());
+						// $("#shuliang").html("×" + $("#amount-project").val());
+						return;
+					}
+					// 					if(parseInt($(this).val()) > 100) {
+					// 						$(this).val("100");
+					// 						var total = parseFloat($("#money-project").val()) * parseInt($(this).val());
+					// 						$("#totalMoney-project").html(total.toFixed(2));
+					// 						$("#shuliang").html("×" + $("#amount-project").val());
+					// 						return;
+					// 					}
+					var total = parseFloat($("#money-project").val()) * parseInt($(this).val());
+					$("#totalMoney-project").html(total.toFixed(2));
+					// $("#shuliang").html("×" + $("#amount-project").val());
+				})
+			});
+			/*数量+1*/
+			function numAdd() {
+				var num_add = parseInt($("#amount-project").val()) + 1;
+				if($("#amount-project").val() == "") {
+					num_add = 1;
+				}
+
+				$("#amount-project").val(num_add);
+				var total = parseFloat($("#money-project").val()) * parseInt($("#amount-project").val());
+				$("#totalMoney-project").html(total.toFixed(2));
+				// $("#shuliang").html("×" + $("#amount-project").val());
+			}
+			/*数量-1*/
+			function numDec() {
+				var num_dec = parseInt($("#amount-project").val()) - 1;
+				if(num_dec < 1) {
+					mui.toast("最少1份");
+				} else {
+					$("#amount-project").val(num_dec);
+					var total = parseFloat($("#money-project").val()) * parseInt($("#amount-project").val());
+					$("#totalMoney-project").html(total.toFixed(2));
+					// $("#shuliang").html("×" + $("#amount-project").val());
+				}
+			}
+			$(function() {
+				//增加份数
+				$('#add-project').click(function() {
+					numAdd();
+				});
+				//减少份数
+				$('#del-project').click(function() {
+					numDec();
+				});
+			})
+		</script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lunbo.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>充值</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- 当启动webapp功能时，显示手机信号、时间、电池的顶部导航栏的颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）。这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- 忽略页面中的数字识别为电话号码、email识别 -->
+		<meta name="format-detection"content="telephone=no, email=no">
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta name="renderer" content="webkit">
+		<!-- 避免IE使用兼容模式 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+		<meta name="HandheldFriendly" content="true">
+		<!-- 微软的老式浏览器 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 网页不会被缓存 -->
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<link rel="shortcut icon" href="/favicon.ico"/>
+		<script>
+			//单选按钮点击
+			window.FastClick = true;
+		</script>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/static.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+				<!-- 主界面移动、菜单不动 -->
+	<div class="mui-off-canvas-wrap mui-draggable">
+		<!-- 主页面容器 -->
+	  <div class="mui-inner-wrap">
+			<!-- 主页面标题 -->
+			<!-- 主页面标题 -->
+			<header class="mui-bar mui-bar-nav">
+			   <a class="mui-icon mui-icon-arrowleft mui-pull-left back mui-action-back" href="javascript:history:back(-1)">返回</a>
+		       <h1 class="mui-title">充值</h1>
+			
+			</header>
+			
+			<div class="mui-content mui-scroll-wrapper mui-yufan-index">
+				<div class="mui-scroll">
+					<!--这里放置真实显示的DOM内容-->
+					<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-collapse-content">
+								<a href="bill.html" class="mui-navigate-right my-zd">
+									我的金币：<span class="color-red" id="myMoney">4283.00</span>
+									<span class="mui-right right-rem">账单</span>
+								</a>
+							</li>
+						</ul>
+					
+					<div class="mui-full-back"></div>
+					<div class="recharge-list">
+					<div class="form1"> 
+						<label class="type1"> 
+						<!-- <div class="clearfix"> -->
+						<span class="a-num active" RMB="29.00">29.00</span> 
+						<span class="a-num" RMB="476.00">476.00</span> 
+						<span class="a-num" RMB="1654.00">1654.00</span> 
+						<span class="a-num" RMB="3688.00">3688.00</span> 
+						<span class="a-num" RMB="3688.00">3688.00</span> 
+						<span class="a-num" RMB="12987.00">12987.00</span> 
+						<!-- </div> --> 
+						</label> 
+						<input class="num_rmb" type="text" value="" style="display: none;" name="money"/>
+				
+                    </div> 
+					</div>
+					
+					<p class="methods">选择支付方式</p>
+					<div class="mui-input-row mui-checkbox pay-methods">
+						<label><img src="img/icon_Paytreasure.png"/>支付宝</label>
+						<input name="checkBox" type="checkbox" checked>
+					</div>
+					<button type="button" class="recharge-btn" onclick="go_recharge();">立即充值</button>
+					<p class="notice-ts">温馨提示：支付宝在4分钟内付款，超时请重试（充值手续费0.8%）</p>
+				</div>
+			</div>
+			<div class="mui-off-canvas-backdrop"></div>
+		</div>
+	</div>
+		
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//初始化mui
+			mui.init();
+			//充值事件
+			function go_recharge(){
+				    // 选中的值
+					var money = $(".num_rmb").val();
+					window.location.href="qrRecharged.html";
+				}
+			
+		    // 点击a-num事件
+			$(".a-num").on('tap',function(){
+				$(this).addClass("active").siblings().removeClass("active");   // 点击后选中添加active除其他兄弟元素的active
+				RMB = $(this).attr("RMB");                                     // 获取到金额
+				 // console.log(RMB);
+				$(".num_rmb").val(RMB);
+				// console.log($(".num_rmb").val());
+			});
+
+		</script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

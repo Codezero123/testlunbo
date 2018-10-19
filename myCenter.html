@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>个人中心</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- 当启动webapp功能时，显示手机信号、时间、电池的顶部导航栏的颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）。这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- 忽略页面中的数字识别为电话号码、email识别 -->
+		<meta name="format-detection"content="telephone=no, email=no">
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta name="renderer" content="webkit">
+		<!-- 避免IE使用兼容模式 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+		<meta name="HandheldFriendly" content="true">
+		<!-- 微软的老式浏览器 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 网页不会被缓存 -->
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<link rel="shortcut icon" href="/favicon.ico"/>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/static.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+				<!-- 主界面移动、菜单不动 -->
+	<div class="mui-off-canvas-wrap mui-draggable">
+		<!-- 主页面容器 -->
+	  <div class="mui-inner-wrap">
+			<!-- 主页面标题 -->
+			<!-- 主页面标题 -->
+			<header class="mui-bar mui-bar-nav">
+			   <a class="mui-icon mui-icon-arrowleft mui-pull-left back mui-action-back" href="javascript:history:back(-1)">返回</a>
+		       <h1 class="mui-title">个人中心</h1>
+			  <!-- <div class="mui-icon mui-pull-right back" id="close">
+				   <img src="img/setting.png"/>
+			   </div> -->
+			</header>
+			<nav class="mui-bar mui-bar-tab">
+				<a href="index.html" class="mui-tab-item">
+					<span class="mui-icon mui-icon-home"></span>
+					<span class="mui-tab-label">首页</span>
+				</a>
+				
+				<a href="order.html" class="mui-tab-item">
+					<span class="mui-icon mui-icon-order"></span>
+					<span class="mui-tab-label">订单</span>
+				</a>
+				<a href="myCenter.html" class="mui-tab-item mui-active">
+					<span class="mui-icon mui-icon-mine"></span>
+					<span class="mui-tab-label">我的</span>
+				</a>
+			</nav>
+			<div class="mui-content mui-scroll-wrapper mui-yufan-index">
+				<div class="mui-scroll">
+					<!--这里放置真实显示的DOM内容-->
+					<div class="center-top">
+						
+					</div>
+					<div class="center-content">
+						<a href="myInfo.html">
+					
+							<div class="mui-left radiu-width-left"></div>
+
+						<img src="img/img_hp.png" class="header-img"/>
+						<div class="mui-right radiu-width-right"></div>
+
+					
+						<h4>账号ID：<span>ldsakjd</span></h4>
+						</a>
+					</div>
+					<ul class="mui-table-view mui-grid-view mui-grid-3 mui-my-list">
+									<li class="mui-table-view-cell mui-collapse-content mui-media mui-col-xs-4 mui-col-sm-4">
+										<a href="recharge.html">
+											<img src="img/icon_top-up.png" class="center-flag"/>
+											<div class="color-gray-size14">充值</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-collapse-content mui-media mui-col-xs-4 mui-col-sm-4">
+										<a href="returnGoods.html">
+											<img src="img/icom_Returngoods.png" class="center-flag"/>
+											<div class="color-gray-size14">退货</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-collapse-content mui-media mui-col-xs-4 mui-col-sm-4">
+										<a href="allOrder.html">
+											<img src="img/icon_Forthegoods.png" class="center-flag"/>
+											<div class="color-gray-size14">待收货</div>
+										</a>
+									</li>
+								</ul>
+					
+					<div class="mui-full-back"></div>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media mui-collapse-content">
+							<a href="allOrder.html" class="mui-navigate-right">
+								<img class="mui-media-object mui-pull-left mui-img-left" src="img/icon_order.png">
+								<div class="mui-media-body mui-center">
+									<p>全部订单</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-collapse-content">
+							<a href="bankCardEmpty.html" class="mui-navigate-right">
+								<img class="mui-media-object mui-pull-left mui-img-left bank-flag" src="img/icon_Bankcard.png">
+								<div class="mui-media-body mui-center">
+									<p>我的银行卡</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-collapse-content">
+							<a href="bill.html" class="mui-navigate-right">
+								<img class="mui-media-object mui-pull-left mui-img-left" src="img/icon_bill.png">
+								<div class="mui-media-body mui-center">
+									<p>账单</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-collapse-content">
+							<a href="withDraw.html" class="mui-navigate-right">
+								<img class="mui-media-object mui-pull-left mui-img-left tixian-flag" src="img/icon_withdrawal.png">
+								<div class="mui-media-body mui-center">
+									<p>提现</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-collapse-content">
+							<a href="setting.html" class="mui-navigate-right">
+								<img class="mui-media-object mui-pull-left mui-img-left" src="img/icon_Set.png">
+								<div class="mui-media-body mui-center">
+									<p>设置</p>
+								</div>
+							</a>
+						</li>
+					
+						
+						
+					</ul>
+					
+					<div class="mui-full-back"></div>
+					
+				</div>
+			</div>
+			<div class="mui-off-canvas-backdrop"></div>
+		</div>
+	</div>
+		
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//初始化mui
+			mui.init();
+			
+			//通知栏动态事件
+		  var timer = setTimeout(marquee, 1000);
+			function marquee() {
+					var scrollWidth = $('.notice-list').width();
+					var textWidth = $('.notice-list p').width();
+					var i = -scrollWidth;
+					setInterval(function() {
+							i++;
+							if(i > scrollWidth) {
+									i = -textWidth;
+							}
+							$('.notice-list p').animate({'right': -i+'px'}, 20);
+							//console.log(i);
+					}, 20);
+					//console.log(scrollWidth );
+			}
+			//购买事件
+	  	function go_detail(){
+				window.location.href="goodDetail.html";
+			}
+		</script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

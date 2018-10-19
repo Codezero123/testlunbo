@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <title>滚动条</title>
+	<style>
+		#tgBigox{
+    position: relative;
+    width:900px; margin:0 auto; height:30px; line-height:30px; padding-right:65px; overflow:hidden;
+}
+#tgGoox{
+    position: absolute;
+    height:30px; line-height:30px;
+    top: 0px;
+    left:0;
+}
+#tgGoox a{
+    color:#fff;
+    margin-left:8px;
+    float:left;
+}
+#tgGoox a:hover{
+    color:#57bc54;
+}
+
+.input-group {
+    padding: 15px 0px;
+}
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+#del {
+    padding: 10px 20px;
+    background: #008489;
+    color: #fff;
+}
+#amount {
+    text-align: center;
+    border: 1px solid #008489;
+    padding: 0px 10px;
+    width: 50px;
+    height: 39px;
+    line-height: 39px;
+    display: inline-block;
+    margin: 0 -5px -13px;
+    position: relative;
+}
+#add {
+    padding: 10px 20px;
+    background: #008489;
+    color: #fff;
+}
+	</style>
+</head>
+<body id="body">
+	<div class="input-group">
+						<span>数量&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<span class="addon icon-minus" id="del">-</span>
+						<input type="text" class="input" id="amount" name="amount" value="1">
+						<span class="addon icon-plus" id="add">+</span>
+						<!--<span class="addon text-red">¥<span id="totalMoney">235.00</span>元</span>-->
+						<input type="hidden" value="235.00" name="money" id="money">
+					</div>
+	
+<div style="background:#333;">
+        <div id="tgBigox">
+        <div id="tgGoox">
+            <a href="" target="_blank">lsaksdjask</a>
+						<a href="" target="_blank">l472340</a>
+
+        </div>
+        </div>
+    </div>
+	<script>
+		
+	$(function() {
+		$("#amount").keyup(function() {
+			if(isNaN($(this).val()) || parseInt($(this).val()) < 1) {
+				$(this).val("1");
+				$("#totalMoney").html($("#money").val());
+				return;
+			}
+			if(parseInt($(this).val()) > 11) {
+				$(this).val("11");
+				var total = parseFloat($("#money").val()) * parseInt($(this).val());
+				$("#totalMoney").html(total.toFixed(2));
+				return;
+			}
+			var total = parseFloat($("#money").val()) * parseInt($(this).val());
+			$("#totalMoney").html(total.toFixed(2));
+		})
+	});
+	/*数量+1*/
+	function numAdd() {
+		var num_add = parseInt($("#amount").val()) + 1;
+		if($("#amount").val() == "") {
+			num_add = 1;
+		}
+		if(num_add > 20) {
+			layer.tips("最多100份", "#amount", {
+				tips: 1
+			})
+		} else {
+			$("#amount").val(num_add);
+			var total = parseFloat($("#money").val()) * parseInt($("#amount").val());
+			$("#totalMoney").html(total.toFixed(2));
+		}
+	}
+	/*数量-1*/
+	function numDec() {
+		var num_dec = parseInt($("#amount").val()) - 1;
+		if(num_dec < 1) {
+			layer.tips("最少1份", "#amount", {
+				tips: 1
+			})
+		} else {
+			$("#amount").val(num_dec);
+			var total = parseFloat($("#money").val()) * parseInt($("#amount").val());
+			$("#totalMoney").html(total.toFixed(2));
+		}
+	}
+	$(function() {
+		//增加份数
+		$('#add').click(function() {
+			numAdd();
+		});
+		//减少份数
+		$('#del').click(function() {
+			numDec();
+		});
+	});
+	//提交数据
+	function sub_with(itemid) {
+		parent.location.href = "index.html";
+	}
+	</script>
+    <script type="text/javascript">
+            var cars = $("#tgGoox").width();
+            var i =0;
+            function start(){
+                i--;
+                if(i<=-cars){
+                    i=2*cars;
+                    document.getElementById('tgGoox').style.right =-cars+'px';
+                }else{
+                    document.getElementById('tgGoox').style.left =i+'px';
+                }
+                setTimeout(start,10);
+            }
+            onload=function(){setTimeout(start,1000)};
+			
+			
+    </script>
+</body>
+</html>

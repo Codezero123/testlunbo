@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>全部订单</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- 当启动webapp功能时，显示手机信号、时间、电池的顶部导航栏的颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）。这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- 忽略页面中的数字识别为电话号码、email识别 -->
+		<meta name="format-detection"content="telephone=no, email=no">
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta name="renderer" content="webkit">
+		<!-- 避免IE使用兼容模式 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+		<meta name="HandheldFriendly" content="true">
+		<!-- 微软的老式浏览器 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 网页不会被缓存 -->
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<link rel="shortcut icon" href="/favicon.ico"/>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/static.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	
+	</head>
+	<body>
+				<!-- 主界面移动、菜单不动 -->
+	<div class="mui-off-canvas-wrap mui-draggable">
+		<!-- 主页面容器 -->
+	    <div class="mui-inner-wrap">
+			<!-- 主页面标题 -->
+			<!-- 主页面标题 -->
+			<header class="mui-bar mui-bar-nav">
+			    <a class="mui-icon mui-icon-arrowleft mui-pull-left back mui-action-back" href="javascript:history:back(-1)">返回</a>
+			    <h1 class="mui-title">全部订单</h1>
+			</header>
+
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--这里放置真实显示的DOM内容-->
+				</div>
+			</div>
+			<div class="mui-off-canvas-backdrop"></div>
+		</div>
+	</div>
+		
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		    var pageNum = 0;
+            //初始化mui
+            mui.init({
+                pullRefresh : {
+                    container:'#pullrefresh',//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+                    up : {
+                      height:50,//可选.默认50.触发上拉加载拖动距离
+                      auto:true,//可选,默认false.自动上拉加载一次
+                      contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+                      contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+                      callback :pullfresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+                    }
+                }
+            });
+            
+            function pullfresh(){
+                var _this = this;
+                pageNum++;
+                //获取所有订单ajax
+                mui.ajax('http://api.cskuaishou.com/hongjiu/app/order/getListByUserId.do', {
+                    dataType: 'json', //服务器返回json格式数据
+                    data: {
+                        userId: '6461c403a78841cc8e055566f73ab442',
+                        pageNo: pageNum,
+                        pageSize: 10
+                    },
+                    async: true, //是否异步
+                    type: 'POST', //HTTP请求类型
+                    cache: false, //是否缓存
+                    success: function(allOrder) {
+                        console.log(allOrder);
+                        if(allOrder.data.length < 10){
+                            for(let i = 0; i <= allOrder.data.length - 1; i++){
+                                $('.mui-scroll').append(`
+                                    <ul class="mui-table-view return-goods toDetail" id="`+allOrder.data[i].id+`">
+                                        <li class="mui-table-view-cell mui-collapse-content">
+                                            <p class="font-middle-size color-black mui-left">下单时间:<span>`+allOrder.data[i].createDate+`</span></p>
+                                            <p class="color-red mui-right"><span>`+allOrder.data[i].stateFlagNmae+`</span></p>
+                                        </li>
+                                        <li class="mui-table-view-cell mui-media order-center mui-collapse-content">
+                                            <img class="mui-media-object mui-pull-left goods-img" src="img/order_img.png">
+                                            <div class="mui-media-body">
+                                                <p class="return-goods-name">`+allOrder.data[i].goodsName+`</p>
+                                                <p class="color-black font-big-size line-big-height">￥<span>`+allOrder.data[i].goodsPrice+`</span> <span class="mui-right color-grad">×`+allOrder.data[i].goodsNum+`</span></p>
+                                            </div>
+                                        </li>
+                                        <li class="mui-table-view-cell mui-media mui-collapse-content last">
+                                            <p class="color-grad font-small-size line-small-height2">运费：<span>`+allOrder.data[i].carriage+`</span></p>
+                                            <p class="color-black font-middle-size text-right-algin line-small-height2">共<span>`+allOrder.data[i].goodsNum+`</span>件&nbsp;&nbsp;合计:￥<span class="font-big-size">`+allOrder.data[i].money+`</span></p>
+                                        </li>
+                                        <!-- 升级失败或成功才显示 -->
+                                        <img id="sjFlag_`+pageNum + i+`" class="shengji" style="display: none;"/>
+                                    </ul> 
+                                    <div class="mui-full-back"></div>
+                                `)
+                                
+                                if(allOrder.data[i].openFlag == 1){
+                                    $('#sjFlag_'+pageNum + i).show();
+                                    console.log(allOrder.data[i].winOrlos)
+                                    if(allOrder.data[i].winOrlos == 0){
+                                        $('#sjFlag_'+pageNum + i).attr('src','img/img_Upgradesuccess.png');
+                                    }else if(allOrder.data[i].winOrlos == 1){
+                                        $('#sjFlag_'+pageNum + i).attr('src','img/img_Upgradefailed.png');
+                                    }
+                                }else{
+                                    $('#sjFlag_'+pageNum + i).hide();
+                                }
+                            }
+                            _this.endPullupToRefresh(true);
+
+                        }else{
+                            for(let i = 0; i <= 9; i++){
+                                $('.mui-scroll').append(`
+                                    <ul class="mui-table-view return-goods toDetail" id="`+allOrder.data[i].id+`">
+                                        <li class="mui-table-view-cell mui-collapse-content">
+                                            <p class="font-middle-size color-black mui-left">下单时间:<span>`+allOrder.data[i].createDate+`</span></p>
+                                            <p class="color-red mui-right"><span>`+allOrder.data[i].stateFlagNmae+`</span></p>
+                                        </li>
+                                        <li class="mui-table-view-cell mui-media order-center mui-collapse-content">
+                                            <img class="mui-media-object mui-pull-left goods-img" src="img/order_img.png">
+                                            <div class="mui-media-body">
+                                                <p class="return-goods-name">`+allOrder.data[i].goodsName+`</p>
+                                                <p class="color-black font-big-size line-big-height">￥<span>`+allOrder.data[i].goodsPrice+`</span> <span class="mui-right color-grad">×`+allOrder.data[i].goodsNum+`</span></p>
+                                            </div>
+                                        </li>
+                                        <li class="mui-table-view-cell mui-media mui-collapse-content last">
+                                            <p class="color-grad font-small-size line-small-height2">运费：<span>`+allOrder.data[i].carriage+`</span></p>
+                                            <p class="color-black font-middle-size text-right-algin line-small-height2">共<span>`+allOrder.data[i].goodsNum+`</span>件&nbsp;&nbsp;合计:￥<span class="font-big-size">`+allOrder.data[i].money+`</span></p>
+                                        </li>
+                                        <!-- 升级失败或成功才显示 -->
+                                        <img id="sjFlag_`+pageNum + i+`" class="shengji"/>
+                                    </ul> 
+                                    <div class="mui-full-back"></div>
+                                `)
+                                
+                                if(allOrder.data[i].openFlag == 1){
+                                    $('#sjFlag_'+pageNum + i).show();
+                                    console.log(allOrder.data[i].winOrlos)
+                                    if(allOrder.data[i].winOrlos == 0){
+                                        $('#sjFlag_'+pageNum + i).attr('src','img/img_Upgradesuccess.png');
+                                    }else if(allOrder.data[i].winOrlos == 1){
+                                        $('#sjFlag_'+pageNum + i).attr('src','img/img_Upgradefailed.png');
+                                    }
+                                }else{
+                                    $('#sjFlag_'+pageNum + i).hide();
+                                }
+                            }
+                            
+                            if(pageNum == allOrder.totalPage){
+                                _this.endPullupToRefresh(true);
+                            }else{
+                                _this.endPullupToRefresh(false);
+                            }
+                        }
+                    },
+                    error: function(xhr, type, errorThrown) {
+                        console.log('xhr:', xhr);
+                        console.log('type:', type);
+                        console.log('errorThrown:', errorThrown);
+                    }
+                });
+                mui(".mui-scroll").on('tap','.toDetail',function(){
+                    //获取id
+                    var id = this.getAttribute("id");
+                    localStorage.removeItem('orderId');
+                    localStorage.setItem('orderId',id);
+                    location.href='orderDetail.html';
+                }) 
+            }
+		</script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		</body>
+</html>

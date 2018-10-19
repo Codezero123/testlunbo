@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>订单</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- 当启动webapp功能时，显示手机信号、时间、电池的顶部导航栏的颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）。这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- 忽略页面中的数字识别为电话号码、email识别 -->
+		<meta name="format-detection"content="telephone=no, email=no">
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta name="renderer" content="webkit">
+		<!-- 避免IE使用兼容模式 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+		<meta name="HandheldFriendly" content="true">
+		<!-- 微软的老式浏览器 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 网页不会被缓存 -->
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<link rel="shortcut icon" href="/favicon.ico"/>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/static.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	<style>
+		input{
+		  box-sizing:border-box;
+		  vertical-align:middle;
+		}
+	</style>
+	</head>
+	<body>
+				<!-- 主界面移动、菜单不动 -->
+	<div class="mui-off-canvas-wrap mui-draggable">
+		<!-- 主页面容器 -->
+	  <div class="mui-inner-wrap">
+			<!-- 主页面标题 -->
+			<!-- 主页面标题 -->
+			<header class="mui-bar mui-bar-nav">
+		    <a class="mui-icon mui-icon-arrowleft mui-pull-left back mui-action-back" href="javascript:history:back(-1)">返回</a>
+			<h1 class="mui-title">订单</h1>
+			</header>
+			<nav class="mui-bar mui-bar-tab">
+				<a href="index.html" class="mui-tab-item">
+					<span class="mui-icon mui-icon-home"></span>
+					<span class="mui-tab-label">首页</span>
+				</a>
+				
+				<a href="order.html" class="mui-tab-item mui-active">
+					<span class="mui-icon mui-icon-order"></span>
+					<span class="mui-tab-label">订单</span>
+				</a>
+				<a href="myCenter.html" class="mui-tab-item">
+					<span class="mui-icon mui-icon-mine"></span>
+					<span class="mui-tab-label">我的</span>
+				</a>
+			</nav>
+			<div class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--这里放置真实显示的DOM内容-->
+					
+						<div id="slider" class="mui-slider">
+							<div id="sliderSegmentedControl" class="mui-segmented-control mui-project-good">
+								<a id="list1" class="mui-control-item border-w-right mui-active" href="#item1" onclick="orderSlider();">新订单</a>
+								<a id="list2" class="mui-control-item" href="#item2" onclick="orderSlider();">历史订单</a>
+							</div>
+							<div class="mui-content-padded">
+								<div class="order-timeout">
+									<p>重庆时时彩180043-64期&nbsp;开奖倒计时<span id="timer">00:00:00</span></p>
+								</div>
+								<div id="item1" class="mui-control-content mui-active">
+									
+									<ul class="mui-table-view return-goods order-list">
+									<li class="mui-table-view-cell mui-collapse-content">
+										<p class="font-middle-size color-black mui-left">下单时间:<span>2018-08-09 11:19</span></p>
+										<p class="color-red mui-right"><span>待开奖</span></p>
+									</li>
+									<li class="mui-table-view-cell mui-media mui-collapse-content order-center">
+										<a href="orderDetail.html">
+											<img class="mui-media-object mui-pull-left goods-img" src="img/order_img.png">
+											<div class="mui-media-body">
+												<p class="return-goods-name">法国原酒-戈斯美露</p>
+												<p class="color-black font-big-size line-big-height">￥<span>100</span> <span class="mui-right color-grad">×1</span></p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media mui-collapse-content last">
+										<p class="color-grad font-small-size line-small-height2">运费：<span>10</span></p>
+										<p class="color-black font-middle-size text-right-algin line-small-height2">共<span></span>件&nbsp;&nbsp;合计:￥<span class="font-big-size">110</span></p>
+									</li>
+									</ul> 
+								<ul class="mui-table-view return-goods order-list">
+								<li class="mui-table-view-cell mui-collapse-content">
+									<p class="font-middle-size color-black mui-left">下单时间:<span>2018-08-09 11:19</span></p>
+									<p class="color-red mui-right"><span>待开奖</span></p>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-collapse-content order-center">
+									<a href="orderDetail.html">
+										<img class="mui-media-object mui-pull-left goods-img" src="img/order_img.png">
+										<div class="mui-media-body">
+											<p class="return-goods-name">法国原酒-戈斯美露</p>
+											<p class="color-black font-big-size line-big-height">￥<span>100</span> <span class="mui-right color-grad">×1</span></p>
+										</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-collapse-content last">
+									<p class="color-grad font-small-size line-small-height2">运费：<span>10</span></p>
+									<p class="color-black font-middle-size text-right-algin line-small-height2">共<span></span>件&nbsp;&nbsp;合计:￥<span class="font-big-size">110</span></p>
+								</li>
+								</ul> 
+								</div>
+								
+								<div id="item2" class="mui-control-content">
+									<ul class="mui-table-view return-goods order-list">
+									<li class="mui-table-view-cell mui-collapse-content">
+										<p class="font-middle-size color-black mui-left">下单时间:<span>2018-08-09 11:19</span></p>
+										<p class="color-red mui-right"><span>待开奖</span></p>
+									</li>
+									<li class="mui-table-view-cell mui-media mui-collapse-content order-center">
+										<a href="orderDetail.html">
+											<img class="mui-media-object mui-pull-left goods-img" src="img/order_img.png">
+											<div class="mui-media-body">
+												<p class="return-goods-name">法国原酒-戈斯美露</p>
+												<p class="color-black font-big-size line-big-height">￥<span>100</span> <span class="mui-right color-grad">×1</span></p>
+											</div>
+										</a>
+									</li>
+									<li class="mui-table-view-cell mui-media mui-collapse-content last">
+										<p class="color-grad font-small-size line-small-height2">运费：<span>10</span></p>
+										<p class="color-black font-middle-size text-right-algin line-small-height2">共<span></span>件&nbsp;&nbsp;合计:￥<span class="font-big-size">110</span></p>
+									</li>
+									<!-- 升级失败或成功才显示 -->
+									<img src="img/read.png" id="sjFlag" class="shengji" style="display: none;"/>
+									</ul> 
+									
+								</div>
+							</div>
+                            <div class="mui-full-back"></div>
+						</div>
+					
+					<div class="mui-full-back"></div>
+				</div>  
+			</div>
+			<div class="mui-off-canvas-backdrop"></div>
+		</div>
+	</div>
+	
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//初始化mui
+			mui.init();
+			//倒计时
+			var interval = 1000; 
+			function ShowCountDown(year,month,day,hour,minute,second,divname) { 
+				var now = new Date(); 
+				console.log(now);
+				var endDate = new Date(year, month-1, day, hour, minute, second); 
+				var leftTime=endDate.getTime()-now.getTime();
+
+				var leftsecond = parseInt(leftTime/1000); 
+				console.log(leftsecond);
+				//var day1=parseInt(leftsecond/(24*60*60*6));  
+				console.log(Math.floor(leftsecond/60/60/24));
+				// var days = Math.floor(leftsecond/60/60/24);
+				// var hours=Math.floor(leftsecond/60/60%24) + days*24; 
+				var hours=Math.floor(leftsecond/60/60%24);
+				var minutes=Math.floor(leftsecond/60%60); 
+				var seconds=Math.floor(leftsecond%60); 
+				if(hours<0){
+					hours= "00";
+					minutes = "00";
+					seconds = "00";
+				}else{
+				if(hours<10){
+				  hours="0"+hours;
+				}
+				if(minutes<10){
+				  minutes = "0"+minutes;
+				}
+				if(seconds<10){
+				  seconds = "0"+seconds;
+				}
+				}
+				var cc = document.getElementById(divname);
+				cc.innerHTML = hours+":"+minutes+":"+seconds; 
+			} 
+			window.setInterval(function(){ShowCountDown(2018,8,29,12,0,0,'timer');}, interval);
+
+		</script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

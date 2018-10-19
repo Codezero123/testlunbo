@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>订单成功</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- 当启动webapp功能时，显示手机信号、时间、电池的顶部导航栏的颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）。这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- 忽略页面中的数字识别为电话号码、email识别 -->
+		<meta name="format-detection"content="telephone=no, email=no">
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta name="renderer" content="webkit">
+		<!-- 避免IE使用兼容模式 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+		<meta name="HandheldFriendly" content="true">
+		<!-- 微软的老式浏览器 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 网页不会被缓存 -->
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<link rel="shortcut icon" href="/favicon.ico"/>
+		<script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/static.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	
+	</head>
+	<body>
+				<!-- 主界面移动、菜单不动 -->
+	<div class="mui-off-canvas-wrap mui-draggable">
+		<!-- 主页面容器 -->
+	  <div class="mui-inner-wrap">
+			<!-- 主页面标题 -->
+			<!-- 主页面标题 -->
+			<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-arrowleft mui-pull-left back mui-action-back" href="javascript:history:back(-1)">返回</a>
+			<h1 class="mui-title">订单成功</h1>
+			</header>
+			<div class="mui-content mui-scroll-wrapper mui-yufan-index">
+				<div class="mui-scroll pay-successed">
+					<!--这里放置真实显示的DOM内容-->
+					
+					<div class="content">
+						<div class="good-background">
+							<div class="good-img mui-col-sm-5 mui-col-xs-5">
+								<img src="img/img_fi.png" class="good-pic"/>
+								<p class="good-title">法国进口葡萄酒</p>
+								<p class="good-pri color-red">￥390</p>
+							</div>
+							<div class="good-img mui-col-sm-2 mui-col-xs-2">
+								<img src="img/icon_replace.png" class="connect"/>
+								
+							</div>
+							<div class="good-img mui-col-sm-5 mui-col-xs-5">
+								<img src="img/img_fi.png" class="good-pic"/>
+								<p class="good-title">法国进口葡萄酒</p>
+								<p class="good-pri color-red">￥390</p>
+							</div>
+						</div>
+					</div>
+					<p class="text-notice">温馨提示：参加竞猜活动即有机会获得更高价值商品</p>
+						<!--<div class="mui-full-back"></div>-->
+						
+					<div class="two-btn">
+						<button class="btn1" id="successedBtn">竞猜</button>
+						<button class="btn2" onclick="goGetGood();">去提货</button>
+					</div>	
+					
+				</div>
+			</div>
+			<div class="mui-off-canvas-backdrop"></div>
+		</div>
+	</div>
+	<div id="popover-successed" class="mui-popover successed-pop">
+		<div class="mui-scroll-wrapper" data-scroll="1">
+			<div class="mui-scroll">
+				<div class="notice-pop">
+				<!-- <img src="img/Popupwindow.png" class="guess-background" /> -->
+				<div class="two">
+					<button class="first" onclick="play();"></button>
+					<button class="second" onclick="play();"></button>
+				</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//初始化mui
+			mui.init();
+			$("#successedBtn").on('tap',function(){
+				mui('.mui-popover').popover('toggle');
+			})
+			
+			function isclick(){
+				$("#popover-successed").hide();
+				$(".mui-backdrop").hide();
+			}
+			function play(){
+				isclick();
+				window.location.href="order.html";
+			}
+			function goGetGood(){
+				 window.location.href="pickUpGoods.html";
+			}
+		</script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		</body>
+</html>

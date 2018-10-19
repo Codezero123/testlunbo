@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<!-- <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>订单详情</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!-- 是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。 -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- 当启动webapp功能时，显示手机信号、时间、电池的顶部导航栏的颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明）。这个主要是根据实际的页面设计的主体色为搭配来进行设置。 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- 忽略页面中的数字识别为电话号码、email识别 -->
+	<meta name="format-detection" content="telephone=no, email=no">
+	<!-- 启用360浏览器的极速模式(webkit) -->
+	<meta name="renderer" content="webkit">
+	<!-- 避免IE使用兼容模式 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+	<meta name="HandheldFriendly" content="true">
+	<!-- 微软的老式浏览器 -->
+	<meta name="MobileOptimized" content="320">
+	<!-- uc强制竖屏 -->
+	<meta name="screen-orientation" content="portrait">
+	<!-- QQ强制竖屏 -->
+	<meta name="x5-orientation" content="portrait">
+	<!-- UC强制全屏 -->
+	<meta name="full-screen" content="yes">
+	<!-- QQ强制全屏 -->
+	<meta name="x5-fullscreen" content="true">
+	<!-- UC应用模式 -->
+	<meta name="browsermode" content="application">
+	<!-- QQ应用模式 -->
+	<meta name="x5-page-mode" content="app">
+	<!-- windows phone 点击无高光 -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<!-- 网页不会被缓存 -->
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<script type="text/javascript" src="js/rem.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/static.css" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+
+</head>
+
+<body>
+	<!-- 主界面移动、菜单不动 -->
+	<div class="mui-off-canvas-wrap mui-draggable">
+		<!-- 主页面容器 -->
+		<div class="mui-inner-wrap">
+			<!-- 主页面标题 -->
+			<!-- 主页面标题 -->
+			<header class="mui-bar mui-bar-nav">
+				<a class="mui-icon mui-icon-arrowleft mui-pull-left back mui-action-back" href="javascript:history:back(-1)">返回</a>
+				<h1 class="mui-title">订单详情</h1>
+			</header>
+			<div class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--这里放置真实显示的DOM内容-->
+					<!-- 	<div class="order-head">
+						<p class="mui-left color-black font-middle-size">下单时间：<span>2018-07-25 11:19</span></p>
+						<p class="mui-right color-red font-middle-size">待提货</p>
+					</div> -->
+					<ul class="mui-table-view return-goods">
+						<li class="mui-table-view-cell order-head">
+							<p class="mui-left color-black font-middle-size" id="orderTime">下单时间：
+								<span></span>
+							</p>
+							<p class="mui-right color-red font-middle-size" id="orderState"></p>
+						</li>
+						<li class="mui-table-view-cell mui-media order-center mui-collapse-content">
+							<img class="mui-media-object mui-pull-left goods-img" src="">
+							<div class="mui-media-body">
+								<p class="return-goods-name" id="goodsName"></p>
+								<p class="color-black font-big-size line-big-height">￥
+									<span id="goodsPrice"></span>
+									<span class="mui-right color-grad goodsNum">×</span>
+								</p>
+							</div>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-collapse-content">
+							<p class="color-black font-middle-size text-right-algin line-small-height5">共
+								<span class="goodsNum"></span>件&nbsp;&nbsp;合计:￥
+								<span class="font-big-size" id="allMoney"></span>
+							</p>
+							<div class="btns">
+								<button type="button" class="btn-w tuihuo" id="tuihuo">退货</button>
+								<button type="button" class="btn-w tihuo" onclick="tihuo()">提货</button>
+								<button type="button" class="btn-w sj background-red-color" id="sjBtn">升级</button>
+							</div>
+						</li>
+					</ul>
+					<div class="mui-full-back"></div>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-collapse-content">
+							<p class="font-middle-size color-black">订单编号：
+								<span id="orderNumId">5235255246</span>
+							</p>
+						</li>
+						<li class="mui-table-view-cell mui-collapse-content">
+							<p class="font-middle-size color-black">运费：
+								<span id="orderCarriage"></span>元</p>
+						</li>
+						<li class="mui-table-view-cell mui-collapse-content">
+							<p class="font-middle-size color-black">运单号码：
+								<span id="expressNo"></span>
+							</p>
+						</li>
+						<li class="mui-table-view-cell mui-collapse-content">
+							<p class="font-middle-size color-black">承运公司：
+								<span id="expressCompany"></span>
+							</p>
+						</li>
+					</ul>
+
+
+				</div>
+			</div>
+			<div class="mui-off-canvas-backdrop"></div>
+		</div>
+	</div>
+	<!-- 退货 -->
+	<div id="popover-order" class="mui-popover order-tuihuo">
+		<div class="mui-scroll-wrapper" data-scroll="1">
+			<div class="mui-scroll">
+				<div class="th-center">
+					<p class="font-big-size color-black line-small-height5 margin-p-bottom">确认退货</p>
+					<p class="font-middle-size mui-m">退货余额将自动退回账户</p>
+					<p class="color-red font-middle-size mui-m">温馨提示：退货包含15%的手续费</p>
+				</div>
+			</div>
+			<div class="mui-start-btn">
+				<div id="qxth">
+					取消
+				</div>
+			</div>
+			<div class="mui-start-btn">
+				<div class="color-red " id="qrth">
+					确定
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 升级 -->
+	<div id="popover-shengji" class="mui-popover successed-pop">
+		<div class="mui-scroll-wrapper" data-scroll="1">
+			<div class="mui-scroll">
+				<div class="notice-pop">
+					<!-- <img src="img/Popupwindow.png" class="guess-background" /> -->
+					<div class="two">
+						<button class="first" onclick="sjPlay();"></button>
+						<button class="second" onclick="sjPlay();"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//初始化mui
+		mui.init();
+		$("#tuihuo").on('tap', function () {
+			mui('#popover-order').popover('toggle');
+		})
+
+		function tihuo() {
+			window.location.href = "pickUpGoods.html"
+		}
+
+		function shengji() {
+			window.location.href = "guess.html"
+		}
+
+		function isclick() {
+			$("#popover-order").hide();
+			$(".mui-backdrop").hide();
+		}
+		// 升级
+		$("#sjBtn").on('tap', function () {
+			mui('#popover-shengji').popover('toggle');
+		})
+
+		function isclick() {
+			$("#popover-shengji").hide();
+			$(".mui-backdrop").hide();
+		}
+
+		function sjClick() {
+			$("#popover-shengji").hide();
+			$(".mui-backdrop").hide();
+		}
+
+		function sjPlay() {
+			sjClick();
+			window.location.href = "order.html";
+		}
+
+
+		//获取商品详情ajax
+		mui.ajax('http://api.cskuaishou.com/hongjiu/app/order/getOneOrder.do', {
+			dataType: 'json', //服务器返回json格式数据
+			data: {
+				orderId: localStorage.getItem('orderId')
+			},
+			async: true, //是否异步
+			type: 'POST', //HTTP请求类型
+			cache: false, //是否缓存
+			success: function (orderDetail) {
+				console.log(orderDetail);
+				$('#orderTime span').html(orderDetail.data.createDate);
+                $('#orderState').html(orderDetail.data.stateFlagNmae);
+				$('.goods-img').attr('src',orderDetail.data.goodsLogo);
+                $('#goodsName').html(orderDetail.data.goodsName);
+                $('#goodsPrice').html(orderDetail.data.goodsPrice);
+                $('.goodsNum').append(orderDetail.data.goodsNum);
+                $('#allMoney').html(orderDetail.data.money);
+                $('#orderNumId').html(orderDetail.data.orderNo);
+                $('#orderCarriage').html(orderDetail.data.carriage);
+                if(orderDetail.data.expressCompany == ""){
+                    $('#expressCompany').html("暂无")
+                }else{
+                    $('#expressCompany').html(orderDetail.data.expressCompany)
+                }
+                if(orderDetail.data.expressNo == ""){
+                    $('#expressNo').html("暂无")
+                }else{
+                    $('#expressNo').html(orderDetail.data.expressNo)
+                }
+                
+                if(orderDetail.data.openFlag == 1 && orderDetail.data.winOrlos == 0){
+                    $('#tuihuo').show();
+        
+        
+                    $("#qrth").on('tap', function () {
+                        isclick();
+                        localStorage.removeItem('orderId');
+                        localStorage.setItem('orderId',orderDetail.data.id);
+                        
+                        
+                        window.location.href = 'returnGoods.html';
+                    })
+                    
+                    
+                    $("#qxth").on('tap', function () {
+                        $("#popover-order").hide();
+                        $(".mui-backdrop").hide();
+                    })
+                }else{
+                    $('#tuihuo').hide();
+                }
+                
+			},
+			error: function (xhr, type, errorThrown) {
+				console.log('xhr:', xhr);
+				console.log('type:', type);
+				console.log('errorThrown:', errorThrown);
+			}
+		});
+	</script>
+	<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>
